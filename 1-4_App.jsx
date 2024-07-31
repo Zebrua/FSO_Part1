@@ -1,7 +1,12 @@
+const Summ = (list) => {
+  return (
+    list[0] + list[1] + list[2] 
+  )
+}
 const Part = (props) => {
   return (
     <div>
-      <p>{props.name} {props.amount}</p>
+      <p>{props.part.name} {props.part.exercises}</p>
     </div>
   )
 }
@@ -15,14 +20,18 @@ const Header = (props) => {
 const Content = (props) => {
   return (
     <div>
-      <Part name={props.name} amount={props.amount}/>
+      <Part part={props.array[0]} />
+      <Part part={props.array[1]} />
+      <Part part={props.array[2]} />
     </div>
   )
 }
 const Total = (props) => {
+  const exrss = [props.array[0].exercises, props.array[1].exercises, props.array[2].exercises];
+  const res = Summ(exrss);
   return (
     <div>
-      <p>Total number of exercises {props.number}</p>
+      <p>Total number of exercises {res}</p>
     </div>
   )
 }
@@ -46,10 +55,8 @@ const App = () => {
   return (
     <div>
       <Header course={course} />
-      <Content  name={parts[0].name} amount={parts[0].exercises}/>
-      <Content name={parts[1].name} amount={parts[1].exercises} />
-      <Content name={parts[2].name} amount={parts[2].exercises} />
-      <Total number={parts[0].exercises+parts[1].exercises+parts[2].exercises} />
+      <Content  array={parts}/>
+      <Total array={parts} />
     </div>
   )
 }
